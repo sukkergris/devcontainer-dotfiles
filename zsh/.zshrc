@@ -127,11 +127,15 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 # ~/.zshrc
 
 # Source function files
-for f in ~/.zsh_functions/*.zsh; do
-  if [[ -f "$f" ]]; then
-    source "$f"
-  fi
-done
+if [ -d "$HOME/.zsh_functions" ]; then
+  setopt nullglob
+  for f in ~/.zsh_functions/*.zsh; do
+    if [[ -f "$f" ]]; then
+      source "$f"
+    fi
+  done
+  unsetopt nullglob
+fi
 
 alias stil='find . \( -path ./bin -o -path ./obj -o -path ./node_modules -o \) -prune -o'
 
