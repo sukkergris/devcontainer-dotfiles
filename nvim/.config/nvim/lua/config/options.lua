@@ -33,8 +33,6 @@ vim.opt.wildmenu = true           -- Enable an enhanced menu for command-line co
 vim.opt.path:append("**")         -- Enable recursive search in current dir and subdirs for file-finding commands
 vim.opt.path:append("**/.devcontainer/**") -- Also recursively search within the .devcontainer directory (relative to paths searched by default)
 
--- vim.opt.inccommand = "split" -- This line was a duplicate and is commented out
-
 -- Make sure this file is loaded by your main init.lua, for example using:
 -- require('core.options') -- if saved as lua/core/options.lua
 

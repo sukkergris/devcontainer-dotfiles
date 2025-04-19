@@ -2,6 +2,7 @@
     "name": "Testing the devcontainer-dotfiles repos env",
     "image": "isuperman/lua-dev-container:0.1.1",
     "workspaceFolder": "/x",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/x,type=bind",
     "remoteUser": "root",
     "mounts": [
         "source=${localWorkspaceFolder}/zsh/.zshrc,target=/root/.zshrc,type=bind",
