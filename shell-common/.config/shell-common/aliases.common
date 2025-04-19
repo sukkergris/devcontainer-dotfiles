@@ -1,0 +1,23 @@
+alias vi='nvim'
+alias vim='nvim'
+alias la='ls -la'
+
+# Define 'cl' function to change directory and then list contents
+cl () {
+  # Use the built-in cd command to change directory
+  # Pass all arguments given to the function ($@) to the built-in cd
+  # Check the exit status of the built-in cd command ($?)
+  builtin cd "$@" && {
+    # If the cd command was successful (exit status 0),
+    # then execute ls -la in the new directory
+    ls -la
+  }
+}
+
+# Function to call 'tree -a'
+# 'tra' stands for 'tree all' (show hidden files)
+tra () {
+  # Call the original 'tree' command with the -a option
+  # Pass all arguments given to this function ("$@") to the original tree command
+  command tree -a "$@"
+}
