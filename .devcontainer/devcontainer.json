@@ -9,5 +9,14 @@
         "source=${localWorkspaceFolder}/bash/.bashrc,target=/root/.bashrc,type=bind",
         "source=${localWorkspaceFolder}/nvim/.config/nvim,target=/root/.config/nvim,type=bind",
         "source=${localWorkspaceFolder}/shell-common/.config/shell-common,target=/root/.config/shell-common,type=bind"
-    ]
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "streetsidesoftware.code-spell-checker",
+                "ms-azuretools.vscode-docker",
+                "mhutchie.git-graph"
+            ]
+        }
+    }
 }
