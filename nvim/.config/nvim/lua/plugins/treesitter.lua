@@ -11,7 +11,7 @@ return {
                 enable = true,
                 keymaps = {
                   init_selection = "gnn", -- set to `false` to disable one of the mappings
-                  noce_incremental = "grn",
+                  node_incremental = "grn",
                   scope_incremental = "grc",
                   node_decremental = "grm",
                 },
@@ -19,7 +19,7 @@ return {
             textobjects = {
                 select = {
                     enable = true,
-                    lookahaed = true,
+                    lookahead = true,
                     keymaps = {
                         ["af"] = "@function.outer",
                         ["if"] = "@function.inner",
