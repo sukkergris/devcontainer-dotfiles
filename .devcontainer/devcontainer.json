@@ -1,0 +1,11 @@
+{
+    "name": "Testing the devcontainer-dotfiles repos env",
+    "image": "isuperman/lua-dev-container:0.1.1",
+    // "workspaceFolder": "/x",
+    "remoteUser": "root",
+    "mounts": [
+        "source=${localWorkspaceFolder}/zsh/.zshrc,target=/root/.zshrc,type=bind",
+        "source=${localWorkspaceFolder}/bash/.bashrc,target=/root/.bashrc,type=bind",
+        "source=${localWorkspaceFolder}/nvim/.config/nvim,target=/root/.config/nvim,type=bind"
+    ]
+}
