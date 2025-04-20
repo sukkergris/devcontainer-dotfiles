@@ -1,5 +1,5 @@
 local message = "Hello"
-print(message -- Missing closing parenthesis
+  print(message -- Missing closing parenthesis
 
 function greet()
   local name = "World"
