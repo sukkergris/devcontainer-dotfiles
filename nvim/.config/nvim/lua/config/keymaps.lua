@@ -12,4 +12,4 @@ vim.keymap.set('n', '<leader>vsc', ':!code %<CR>', { noremap = true, silent = tr
 --vim.keymap.set('n', '<leader>ps', function()
 --builtin.grep_string({search = vim.fn.input("Grep > ")}) end)
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
