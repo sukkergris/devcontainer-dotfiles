@@ -1,13 +1,14 @@
 {
     "name": "Testing the devcontainer-dotfiles repos env",
-    "image": "isuperman/lua-dev-container:0.1.1",
+    // "image": "isuperman/lua-dev-container:0.1.1",
+    "image": "isuperman/elm-devcontainer-foundation:0.1.1",
     "workspaceFolder": "/x",
     "workspaceMount": "source=${localWorkspaceFolder},target=/x,type=bind",
-    "remoteUser": "root",
+    "remoteUser": "container-user",
     "mounts": [
         "source=${localWorkspaceFolder}/zsh/.zshrc,target=/root/.zshrc,type=bind",
         "source=${localWorkspaceFolder}/bash/.bashrc,target=/root/.bashrc,type=bind",
-        "source=${localWorkspaceFolder}/nvim/.config/nvim,target=/root/.config/nvim,type=bind",
+        "source=${localWorkspaceFolder}/nvim/.config/nvim,target=/home/container-user/.config/nvim,type=bind",
         "source=${localWorkspaceFolder}/shell-common/.config/shell-common,target=/root/.config/shell-common,type=bind"
     ],
     "customizations": {
