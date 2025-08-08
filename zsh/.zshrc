@@ -152,3 +152,7 @@ if [ -d "$HOME/.config/shell-common" ]; then
   done
   unsetopt nullglob
 fi
+
+if command -v task &> /dev/null; then
+    source <(task --completion zsh)
+fi

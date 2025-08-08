@@ -125,3 +125,7 @@ set -o vi
 #if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 #    . /etc/bash_completion
 #fi
+
+if command -v task &> /dev/null; then
+    source <(task --completion bash)
+fi
