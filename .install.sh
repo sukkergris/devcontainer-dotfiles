@@ -18,7 +18,7 @@ cd "$DOTFILES_DIR"
 find_workspace_dir() {
     # Standard VS Code path first (fast path)
     local ws
-    ws=$(ls -d /workspaces/*/ 2>/dev/null | head -1)
+    ws=$(ls -d /workspaces/*/ 2>/dev/null | head -1) || true
     [ -n "$ws" ] && { echo "$ws"; return; }
 
     # Scan bind mounts for a directory containing .devcontainer/
