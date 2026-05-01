@@ -8,6 +8,25 @@ set -euo pipefail
 
 DOTFILES_DIR=$(dirname "$(readlink -f "$0")")
 cd "$DOTFILES_DIR"
+
+# ---------------------------------------------------------------------------
+# Logging — tee all output to .devcontainer/install.log in the workspace.
+# /workspaces/ is bind-mounted from host, so the log survives container rebuilds.
+# Falls back to ~/.local/share/dotfiles-install/ if no workspace is found.
+# ---------------------------------------------------------------------------
+WORKSPACE_DIR=$(ls -d /workspaces/*/ 2>/dev/null | head -1)
+if [ -n "$WORKSPACE_DIR" ]; then
+    LOG_FILE="${WORKSPACE_DIR}.devcontainer/install.log"
+else
+    LOG_FILE="$HOME/.local/share/dotfiles-install/install.log"
+fi
+mkdir -p "$(dirname "$LOG_FILE")"
+exec > >(tee -a "$LOG_FILE") 2>&1
+
+echo "========================================"
+echo "dotfiles install started: $(date -Iseconds)"
+echo "log: $LOG_FILE"
+echo "========================================"
 echo "Running dotfiles install.sh from $(pwd)..."
 
 # ---------------------------------------------------------------------------
