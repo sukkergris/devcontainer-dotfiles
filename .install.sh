@@ -10,9 +10,8 @@ DOTFILES_DIR=$(dirname "$(readlink -f "$0")")
 cd "$DOTFILES_DIR"
 
 # ---------------------------------------------------------------------------
-# Logging — tee all output to a persistent log under ~/.local/share.
 # ---------------------------------------------------------------------------
-LOG_FILE="$HOME/.local/share/dotfiles-install/install.log"
+LOG_FILE="$HOME/.devcontainer/logging/install.log"
 mkdir -p "$(dirname "$LOG_FILE")"
 exec > >(tee -a "$LOG_FILE") 2>&1
 
