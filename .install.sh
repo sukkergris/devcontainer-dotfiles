@@ -14,7 +14,7 @@ cd "$DOTFILES_DIR"
 # /workspaces/ is bind-mounted from host, so the log survives container rebuilds.
 # Falls back to ~/.local/share/dotfiles-install/ if no workspace is found.
 # ---------------------------------------------------------------------------
-WORKSPACE_DIR=$(ls -d /workspaces/*/ 2>/dev/null | head -1)
+WORKSPACE_DIR=$(ls -d /workspaces/*/ 2>/dev/null | head -1) || true
 if [ -n "$WORKSPACE_DIR" ]; then
     LOG_FILE="${WORKSPACE_DIR}.devcontainer/install.log"
 else
