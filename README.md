@@ -60,36 +60,21 @@ Add these user settings in VS Code:
 
 ## Logging
 
-`.install.sh` logs all output to `.devcontainer/install.log` inside the
-workspace directory. The workspace is bind-mounted from the host, so the log
-persists across container rebuilds.
-
-If no `/workspaces/` mount is found, the log falls back to
-`~/.local/share/dotfiles-install/install.log` inside the container.
-
-Each run appends a timestamped block, so the file accumulates history:
+`.install.sh` logs all output to `~/.devcontainer/logging/install.log` inside
+the container. Each run appends a timestamped block:
 
 ```
 ========================================
 dotfiles install started: 2026-05-01T09:34:12+02:00
-log: /workspaces/myproject/.devcontainer/install.log
+log: /root/.devcontainer/logging/install.log
 ========================================
 ```
 
 To read the log from inside the container:
 
 ```sh
-cat /workspaces/<project>/.devcontainer/install.log
+cat ~/.devcontainer/logging/install.log
 ```
-
-Or from the host:
-
-```sh
-cat <project-path>/.devcontainer/install.log
-```
-
-> **Note:** Add `.devcontainer/install.log` to `.gitignore` if you do not want
-> the log committed.
 
 ## References
 
