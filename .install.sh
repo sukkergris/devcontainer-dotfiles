@@ -11,10 +11,22 @@ cd "$DOTFILES_DIR"
 
 # ---------------------------------------------------------------------------
 # Logging — tee all output to .devcontainer/install.log in the workspace.
-# /workspaces/ is bind-mounted from host, so the log survives container rebuilds.
-# Falls back to ~/.local/share/dotfiles-install/ if no workspace is found.
+# Workspace may be mounted anywhere (e.g. /workspaces/foo or /xyz), so we scan
+# bind mounts for a directory that contains .devcontainer/. Falls back to
+# ~/.local/share/dotfiles-install/ if no workspace is found.
 # ---------------------------------------------------------------------------
-WORKSPACE_DIR=$(ls -d /workspaces/*/ 2>/dev/null | head -1)
+find_workspace_dir() {
+    # Standard VS Code path first (fast path)
+    local ws
+    ws=$(ls -d /workspaces/*/ 2>/dev/null | head -1)
+    [ -n "$ws" ] && { echo "$ws"; return; }
+
+    # Scan bind mounts for a directory containing .devcontainer/
+    while IFS= read -r mountpoint; do
+        [ -d "${mountpoint}/.devcontainer" ] && { echo "${mountpoint}/"; return; }
+    done < <(findmnt --noheadings --output TARGET 2>/dev/null)
+}
+WORKSPACE_DIR=$(find_workspace_dir)
 if [ -n "$WORKSPACE_DIR" ]; then
     LOG_FILE="${WORKSPACE_DIR}.devcontainer/install.log"
 else
