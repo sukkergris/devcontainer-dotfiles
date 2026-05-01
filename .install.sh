@@ -80,12 +80,9 @@ for FILENAME in "${FILES_TO_BACKUP[@]}"; do
 done
 # --- End Backup Section ---
 
-# Run stow to create symlinks for all packages in the current directory
-# The target directory is implicitly $HOME (stow's default parent directory of the target)
+# Run stow to create symlinks for all package directories in the current directory
 echo "Running stow for all packages in $(pwd)..."
-# The '*' will expand to all files and directories in the current directory ($SCRIPT_DIR)
-# Stow interprets these as packages to link into the parent directory ($HOME)
-stow * -t "$HOME" # Explicitly set target directory for clarity
+stow */ -t "$HOME" # Explicitly set target directory for clarity
 
 # Check if stow command was successful
 if [ $? -eq 0 ]; then

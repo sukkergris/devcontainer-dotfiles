@@ -3,7 +3,7 @@
 -- or wherever you load your options. Ensure it's required from your init.lua.
 
 -- Line Numbers
-vim.opt.relativenumber = true      -- Show line numbers relative to the cursor line (except current line)
+vim.opt.relativenumber = false      -- Show line numbers relative to the cursor line (except current line)
 vim.opt.number = true             -- Show the absolute line number on the current line (works with relativenumber)
 
 -- Tabs and Indentation
