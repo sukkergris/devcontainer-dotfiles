@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -u
 
 export NVM_DIR="$HOME/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then
