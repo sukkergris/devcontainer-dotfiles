@@ -3,6 +3,21 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+EXTERNAL_TOOLS="$HOME/.scripts/external-tools.sh"
+[ -f "$EXTERNAL_TOOLS" ] && source "$EXTERNAL_TOOLS"
+# Load all files from ~/.config/shell-common/ if the directory exists.
+if [ -d "$HOME/.config/shell-common" ]; then
+    shopt -s nullglob
+
+    for config_file in "$HOME/.config/shell-common/"*; do
+        if [ -f "$config_file" ]; then
+            # shellcheck disable=SC1090
+            source "$config_file"
+        fi
+    done
+
+    shopt -u nullglob
+fi
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -93,28 +108,9 @@ alias l='ls -CF'
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.bash_aliases ]; then
+        # shellcheck source=/dev/null
     . ~/.bash_aliases
 fi
-
-# Load all files from ~/.config/shell-common/ if the directory exists (from File 1)
-# Check if the target directory exists first
-if [ -d "$HOME/.config/shell-common" ]; then
-  # Set the nullglob option so that if no files match the pattern,
-  # the loop doesn't run with the literal pattern string.
-  shopt -s nullglob # <-- Bash equivalent of setopt nullglob
-
-  # Loop through all files in the specified directory ~/.config/shell-common/
-  # The '*' here means all files and directories directly inside ~/.config/shell-common/
-  for config_file in "$HOME/.config/shell-common/"*; do
-    # Check if the found item is a regular file before sourcing
-    if [ -f "$config_file" ]; then
-      source "$config_file" # Sources the file
-    fi
-  done
-
-  # Unset the nullglob option
-  shopt -u nullglob # <-- Bash equivalent of unsetopt nullglob
-fi # <--- Matches the initial 'if [ -d ... ]' for shell-common
 
 # Set keybindings to vim (from File 1)
 set -o vi
@@ -127,5 +123,6 @@ set -o vi
 #fi
 
 if command -v task &> /dev/null; then
+    # shellcheck disable=SC1090
     source <(task --completion bash)
 fi
