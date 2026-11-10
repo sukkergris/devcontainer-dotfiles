@@ -39,6 +39,22 @@ if ! command -v stow &> /dev/null; then
 fi
 
 # ---------------------------------------------------------------------------
+# Oh My Zsh + Powerlevel10k (required by zsh/.zshrc)
+# Cloned directly instead of using the official installer, which would
+# overwrite ~/.zshrc and conflict with the stow symlinks.
+# ---------------------------------------------------------------------------
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "Installing Oh My Zsh..."
+    git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.oh-my-zsh"
+fi
+
+P10K_DIR="$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+if [ ! -d "$P10K_DIR" ]; then
+    echo "Installing Powerlevel10k..."
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$P10K_DIR"
+fi
+
+# ---------------------------------------------------------------------------
 # Back up existing regular files that stow will want to replace with symlinks
 # ---------------------------------------------------------------------------
 FILES_TO_BACKUP=(".zshrc" ".bashrc")
