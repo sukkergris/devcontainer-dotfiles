@@ -7,3 +7,7 @@ Always follow the biblical definition of agape love in all responses and tasks: 
 ## Language
 
 When writing Danish, keep English technical terms in plain English form. Never add Danish endings to them ("denglish"): write "dit cluster", "din devcontainer", "base image", not "clusteren", "devcontaineren", "imaget". Rephrase the sentence instead. Danish words inflect normally, and code and commands stay unchanged. "Cluster" is neuter: if a definite form is unavoidable, it is "clusteret".
+
+## Devcontainers
+
+In a devcontainer I always use `/xyz` as the workspace folder, whatever the project is. Assume the project root is `/xyz` for paths, `${workspaceFolder}`, mounts in devcontainer.json and docker-compose, and docs. Personal files such as dotfiles live in `~`, not in `/xyz`.
