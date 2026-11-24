@@ -1,7 +1,7 @@
 alias vi='nvim'
 alias vim='nvim'
 alias la='ls -la'
-
+alias c='clear'
 # Define 'cl' function to change directory and then list contents
 cl () {
   # Use the built-in cd command to change directory
